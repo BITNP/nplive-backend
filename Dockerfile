@@ -1,4 +1,4 @@
-FROM debian:10
+FROM debian:buster-slim
 COPY srs-debian-10-amd64.zip /opt
 RUN sed -i 's/deb.debian.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list && \
     sed -i 's|security.debian.org/debian-security|mirrors.tuna.tsinghua.edu.cn/debian-security|g' /etc/apt/sources.list && \
