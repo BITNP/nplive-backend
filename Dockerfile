@@ -1,10 +1,15 @@
 FROM debian:10
 COPY srs-debian-10-amd64.zip /opt
-RUN sed -i 's/deb.debian.org/mirror.bit.edu.cn/g' /etc/apt/sources.list && \
-    apt update && \
-    apt -y install ffmpeg openssl nginx unzip
+RUN sed -i 's/deb.debian.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list && \
+    sed -i 's|security.debian.org/debian-security|mirrors.tuna.tsinghua.edu.cn/debian-security|g' /etc/apt/sources.list && \
+    sed -i 's|security.debian.org|mirrors.tuna.tsinghua.edu.cn/debian-security|g' /etc/apt/sources.list && \
+    apt-get update && \
+    apt-get install -y nginx supervisor ffmpeg openssl unzip && \
+    rm -rf /var/lib/apt/lists/*
 RUN cd /opt && \
-    unzip srs-debian-10-amd64.zip
+    unzip srs-debian-10-amd64.zip && \
+    rm srs-debian-10-amd64.zip
+COPY deploy/supervisor-app.conf /etc/supervisor/conf.d/
 WORKDIR /opt/srs
 EXPOSE 80 1935 1985 8080
-CMD ['./objs/srs', '-c', './conf/srs.conf']
+CMD ["supervisord", "-n"]

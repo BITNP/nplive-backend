@@ -1,15 +1,14 @@
 version: '3'
 services:
   srs:
-    image: docker.bitnp.net/bitnp/live/nplive-ng-backend-legacy
-    command: 
+    image: docker.bitnp.net/bitnp/live/nplive-ng-backend-legacy:master
     ports:
       - 80:80
       - 1935:1935
       - 8080:8080
     volumes:
-      - deploy/srs-app.conf:/opt/srs/conf/srs.conf
-      - deploy/nginx-app.conf:/etc/nginx/sites-available/default
-      - deploy/logs:/opt/srs/objs/logs
-      - deploy/nginx/html:/opt/srs/objs/nginx/html
-      - deploy/nginx/hls:/opt/srs/objs/nginx/hls
+      - ./deploy/srs-app.conf:/opt/srs/conf/srs.conf
+      - ./deploy/nginx-app.conf:/etc/nginx/sites-available/default
+      - ./deploy/logs:/opt/srs/objs/logs
+      - ./deploy/nginx/html:/opt/srs/objs/nginx/html
+      - ./deploy/nginx/hls:/opt/srs/objs/nginx/hls
