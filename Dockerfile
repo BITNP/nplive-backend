@@ -5,6 +5,7 @@ RUN sed -i 's/deb.debian.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.li
     sed -i 's|security.debian.org|mirrors.tuna.tsinghua.edu.cn/debian-security|g' /etc/apt/sources.list && \
     apt-get update && \
     apt-get install -y nginx supervisor ffmpeg openssl unzip && \
+    echo "daemon off;" >> /etc/nginx/nginx.conf && \
     rm -rf /var/lib/apt/lists/*
 RUN cd /opt && \
     unzip srs-debian-10-amd64.zip && \
