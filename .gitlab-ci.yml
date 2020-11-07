@@ -17,13 +17,7 @@ build-image:
   script:
     - docker build -t $IMAGE_TAG .
     - docker push $IMAGE_TAG
-  only:
-    - master
-
-build-release:
-  stage: release
-  script:
-    - docker build -t $RELEASE_TAG .
+    - docker tag $IMAGE_TAG $RELEASE_TAG
     - docker push $RELEASE_TAG
   only:
-    - deploy
+    - master

@@ -6,8 +6,8 @@ RUN sed -i 's/deb.debian.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.li
     apt-get update && \
     apt-get install -y nginx supervisor ffmpeg openssl unzip && \
     echo "daemon off;" >> /etc/nginx/nginx.conf && \
-    rm -rf /var/lib/apt/lists/*
-RUN cd /opt && \
+    rm -rf /var/lib/apt/lists/* && \
+    cd /opt && \
     unzip srs-debian-10-amd64.zip && \
     rm srs-debian-10-amd64.zip
 COPY deploy/supervisor-app.conf /etc/supervisor/conf.d/
