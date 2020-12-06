@@ -5,7 +5,7 @@ services:
     restart: always
     network_mode: "host"
     volumes:
-      - ./deploy/srs-app.conf:/opt/srs/conf/srs.conf
+      - ./deploy/srs.conf.d:/opt/srs/conf
       - ./deploy/nginx-app.conf:/etc/nginx/sites-available/default
       - ./deploy/logs:/opt/srs/objs/logs
       - ./deploy/nginx/html:/opt/srs/objs/nginx/html
