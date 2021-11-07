@@ -6,7 +6,5 @@ services:
     network_mode: "host"
     volumes:
       - ./deploy/srs.conf.d:/opt/srs/conf
-      - ./deploy/nginx-app.conf:/etc/nginx/sites-available/default
       - ./deploy/logs:/opt/srs/objs/logs
       - ./deploy/nginx/html:/opt/srs/objs/nginx/html
-      - ./deploy/nginx/hls:/opt/srs/objs/nginx/hls
